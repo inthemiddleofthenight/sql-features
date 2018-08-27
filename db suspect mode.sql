@@ -1,0 +1,11 @@
+--to EMERGENCY mode:
+
+EXEC sp_resetstatus 'yourDBname';
+ALTER DATABASE yourDBname SET EMERGENCY
+
+--testing db
+
+DBCC checkdb('yourDBname')
+ALTER DATABASE yourDBname SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+DBCC CheckDB ('yourDBname', REPAIR_ALLOW_DATA_LOSS)
+ALTER DATABASE yourDBname SET MULTI_USER
